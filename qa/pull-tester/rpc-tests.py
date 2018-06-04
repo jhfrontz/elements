@@ -103,6 +103,7 @@ testScripts = [
     'confidential_transactions.py',
     'signed_blockchain.py',
     'feature_blocksign.py',
+    'feature_fedpeg.py',
 
     # Elements' specially adapted tests second
     'blockchain.py',
