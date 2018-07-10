@@ -72,6 +72,8 @@ struct Params {
     uint32_t pegin_min_depth;
     CScript mandatory_coinbase_destination;
     CScript signblockscript;
+    CScript parent_chain_signblockscript;
+    bool ParentChainHasPow() const { return parent_chain_signblockscript == CScript();}
 };
 } // namespace Consensus
 

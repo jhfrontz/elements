@@ -516,7 +516,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-initialfreecoins", strprintf(_("The amount of OP_TRUE coins created in the genesis block. Primarily for testing. (default: %d)"), 0));
         strUsage += HelpMessageOpt("-parentpubkeyprefix", strprintf(_("The byte prefix, in decimal, of the parent chain's base58 pubkey address. (default: %d)"), 111));
         strUsage += HelpMessageOpt("-parentscriptprefix", strprintf(_("The byte prefix, in decimal, of the parent chain's base58 script address. (default: %d)"), 196));
-
+        strUsage += HelpMessageOpt("-con_parent_chain_signblockscript", _("Whether parent chain uses pow or signed blocks. If the parent chain uses signed blocks, the challenge (scriptPubKey) script. If not, an empty string. (default: empty script [ie parent uses pow])"));
     }
     strUsage += HelpMessageOpt("-validatepegin", strprintf(_("Validate pegin claims. All functionaries must run this. (default: %u)"), DEFAULT_VALIDATE_PEGIN));
     strUsage += HelpMessageOpt("-mainchainrpchost=<addr>", strprintf("The address which the daemon will try to connect to validate peg-ins, if enabled. (default: cookie auth)"));
@@ -1022,7 +1022,7 @@ bool AppInitParameterInteraction()
         nConnectTimeout = DEFAULT_CONNECT_TIMEOUT;
 
     policyAsset = CAsset(uint256S(GetArg("-feeasset", chainparams.GetConsensus().pegged_asset.GetHex())));
-    
+
     // Fee-per-kilobyte amount considered the same as "free"
     // If you are mining, be careful setting this:
     // if you set it to zero then
