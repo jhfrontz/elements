@@ -59,7 +59,8 @@ fi
 
 if [ "$RUN_FUNCTIONAL_TESTS" = "true" ]; then
   BEGIN_FOLD functional-tests
-  DOCKER_EXEC test/functional/test_runner.py --ci --combinedlogslen=4000 --coverage --quiet --failfast ${extended}
+  DOCKER_EXEC echo wolf 11
+  DOCKER_EXEC TSAN_OPTIONS="history_size=1:memory_limit_mb=128:${TSAN_OPTIONS}" test/functional/test_runner.py --ci --combinedlogslen=4000 --coverage --quiet --failfast ${extended}
   END_FOLD
 fi
 
