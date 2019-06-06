@@ -15,7 +15,7 @@ if [ -z "$NO_DEPENDS" ]; then
   DOCKER_EXEC ccache --max-size=$CCACHE_SIZE
 fi
 
-DOCKER_EXEC apt-get update clang
+DOCKER_EXEC apt-get upgrade clang
 DOCKER_EXEC clang --version
 
 BEGIN_FOLD autogen
