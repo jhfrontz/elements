@@ -12,6 +12,8 @@ cd "build/elements-$HOST" || (echo "could not enter distdir build/bitcoin-$HOST"
 if [ "$RUN_UNIT_TESTS" = "true" ]; then
   BEGIN_FOLD unit-tests
   DOCKER_EXEC echo wolf 1
+  DOCKER_EXEC apt-get update clang
+  DOCKER_EXEC clang --version
   DOCKER_EXEC TSAN_OPTIONS="history_size=1:memory_limit_mb=128:${TSAN_OPTIONS}" LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib make $MAKEJOBS check VERBOSE=1
   END_FOLD
 fi
