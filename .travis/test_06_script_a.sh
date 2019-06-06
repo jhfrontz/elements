@@ -50,7 +50,7 @@ BEGIN_FOLD build
 DOCKER_EXEC make $MAKEJOBS $GOAL || ( echo "Build failure. Verbose build follows." && DOCKER_EXEC make $GOAL V=1 ; false )
 END_FOLD
 
-if [ "false" = "true" ]; then
+if [ "${UNDEFINED_VAR}" = "true" ]; then
   BEGIN_FOLD unit-tests
   DOCKER_EXEC LD_LIBRARY_PATH=$TRAVIS_BUILD_DIR/depends/$HOST/lib make $MAKEJOBS check VERBOSE=1
   END_FOLD
@@ -73,7 +73,7 @@ if [ "$RUN_BITCOIN_TESTS" = "true" ]; then
     END_FOLD
 fi
 
-if [ "false" = "true" ]; then
+if [ "${UNDEFINED_VAR}" = "true" ]; then
     BEGIN_FOLD fedpeg-bitcoind-test
     BITCOIND_VERSION=0.18.0
     BITCOIND_ARCH=x86_64-linux-gnu
